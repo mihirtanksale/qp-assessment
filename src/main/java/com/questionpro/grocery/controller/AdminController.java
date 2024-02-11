@@ -15,8 +15,8 @@ public class AdminController {
     private AdminService adminService;
 
     @PostMapping("/add-item")
-    public void addGroceryItem(@RequestBody GroceryItemDTO itemDTO) {
-        adminService.addGroceryItem(itemDTO);
+    public String addGroceryItem(@RequestBody GroceryItemDTO itemDTO) {
+        return adminService.addGroceryItem(itemDTO);
     }
 
     @GetMapping("/grocery-items")
@@ -25,17 +25,17 @@ public class AdminController {
     }
 
     @DeleteMapping("/remove-item/{itemId}")
-    public void removeGroceryItem(@PathVariable Long itemId) {
-        adminService.removeGroceryItem(itemId);
+    public String removeGroceryItem(@PathVariable Long itemId) {
+        return adminService.removeGroceryItem(itemId);
     }
 
     @PutMapping("/update-item")
-    public void updateGroceryItem(@RequestBody GroceryItemDTO itemDTO) {
-        adminService.updateGroceryItem(itemDTO);
+    public String updateGroceryItem(@RequestBody GroceryItemDTO itemDTO) {
+        return adminService.updateGroceryItem(itemDTO);
     }
 
     @PutMapping("/manage-inventory/{itemId}")
-    public void manageInventory(@PathVariable Long itemId, @RequestParam int quantity) {
-        adminService. manageInventory(itemId, quantity);
+    public String manageInventory(@PathVariable Long itemId, @RequestParam int quantity) {
+        return adminService. manageInventory(itemId, quantity);
     }
 }

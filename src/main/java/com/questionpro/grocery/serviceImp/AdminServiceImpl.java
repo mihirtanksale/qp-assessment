@@ -2,9 +2,10 @@ package com.questionpro.grocery.serviceImp;
 
 import com.questionpro.grocery.dto.GroceryItemDTO;
 import com.questionpro.grocery.entity.GroceryItem;
+import com.questionpro.grocery.entity.GroceryOrder;
 import com.questionpro.grocery.repository.GroceryItemRepository;
+import com.questionpro.grocery.repository.GroceryOrderRepository;
 import com.questionpro.grocery.service.AdminService;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,13 +18,17 @@ public class AdminServiceImpl implements AdminService {
     @Autowired
     private GroceryItemRepository groceryItemRepository;
 
+    @Autowired
+    private GroceryOrderRepository groceryOrderRepository;
+
     @Override
-    public void addGroceryItem(GroceryItemDTO itemDTO) {
+    public String addGroceryItem(GroceryItemDTO itemDTO) {
         GroceryItem item = new GroceryItem();
         item.setName(itemDTO.getName());
         item.setPrice(itemDTO.getPrice());
         item.setQuantity(itemDTO.getQuantity());
         groceryItemRepository.save(item);
+        return "Grocery item added successfully.";
     }
 
     @Override
@@ -35,27 +40,42 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public void removeGroceryItem(Long itemId) {
+    public String removeGroceryItem(Long itemId) {
+        // Check if there are any associated orders for the item
+        List<GroceryOrder> associatedOrders = groceryOrderRepository.findByItemId(itemId);
+        if (!associatedOrders.isEmpty()) {
+            return "Cannot delete item. There are associated orders.";
+        }
+
+        // If no associated orders, proceed with item deletion
         groceryItemRepository.deleteById(itemId);
+        return "Grocery item removed successfully.";
     }
 
     @Override
-    public void updateGroceryItem(GroceryItemDTO itemDTO) {
-        GroceryItem item = new GroceryItem();
-        item.setId(itemDTO.getId());
-        item.setName(itemDTO.getName());
-        item.setPrice(itemDTO.getPrice());
-        item.setQuantity(itemDTO.getQuantity());
-        groceryItemRepository.save(item);
+    public String updateGroceryItem(GroceryItemDTO itemDTO) {
+        GroceryItem item = groceryItemRepository.findById(itemDTO.getId()).orElse(null);
+        if (item != null) {
+            item.setName(itemDTO.getName());
+            item.setPrice(itemDTO.getPrice());
+            item.setQuantity(itemDTO.getQuantity());
+            groceryItemRepository.save(item);
+            return "Grocery item updated successfully.";
+        }else {
+            return "Grocery item not found.";
+        }
+
     }
 
     @Override
-    @Transactional
-    public void manageInventory(Long itemId, int quantity) {
+    public String manageInventory(Long itemId, int quantity) {
         GroceryItem item = groceryItemRepository.findById(itemId).orElse(null);
         if (item != null) {
             item.setQuantity(quantity);
             groceryItemRepository.save(item);
+            return "Inventory managed successfully.";
+        } else {
+            return "Grocery item not found.";
         }
     }
 

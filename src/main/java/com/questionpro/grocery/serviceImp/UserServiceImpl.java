@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public void createOrder(List<GroceryOrderDTO> items) {
+    public String createOrder(List<GroceryOrderDTO> items) {
         OrderHistory orderHistory = new OrderHistory();
         double totalAmount = 0.0;
         List<GroceryOrder> groceryOrders = new ArrayList<>();
@@ -51,13 +51,15 @@ public class UserServiceImpl implements UserService {
                 item.setQuantity(item.getQuantity() - itemDTO.getQuantity());
                 groceryOrders.add(new GroceryOrder(item, itemDTO.getQuantity(), orderHistory));
             } else {
-                throw new IllegalArgumentException("Insufficient stock for item with ID: " + itemDTO.getItemId());
+                return ("Insufficient stock for item with ID: " + itemDTO.getItemId());
             }
         }
 
         orderHistory.setTotalAmount(totalAmount);
         orderHistoryRepository.save(orderHistory);
         groceryOrderRepository.saveAll(groceryOrders);
+
+        return "Order created successfully.";
     }
 
     private GroceryItemDTO convertToDTO(GroceryItem item) {

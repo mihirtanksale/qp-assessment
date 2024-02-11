@@ -21,7 +21,7 @@ public class UserController {
     }
 
     @PostMapping("/create-order")
-    public void createOrder(@RequestBody List<GroceryOrderDTO> items) {
-        userService.createOrder(items);
+    public String createOrder(@RequestBody List<GroceryOrderDTO> items) {
+        return userService.createOrder(items);
     }
 }

@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface UserService {
     List<GroceryItemDTO> getAllAvailableGroceryItems();
-    void createOrder(List<GroceryOrderDTO> items);
+    String createOrder(List<GroceryOrderDTO> items);
 }
