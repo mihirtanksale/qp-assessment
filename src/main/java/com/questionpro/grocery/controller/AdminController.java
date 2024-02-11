@@ -37,6 +37,6 @@ public class AdminController {
 
     @PutMapping("/manage-inventory/{itemId}")
     public void manageInventory(@PathVariable Long itemId, @RequestParam int quantity) {
-        adminService.manageInventory(itemId, quantity);
+        adminService. manageInventory(itemId, quantity);
     }
 }
