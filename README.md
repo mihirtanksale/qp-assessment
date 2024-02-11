@@ -10,6 +10,27 @@ http://yourdomain.com/admin
 
 ### Endpoints
 
+#### Get All Available Grocery Items
+
+- **URL**: `/available-items`
+- **Method**: GET
+- **Description**: Retrieves a list of all available grocery items.
+- **Example Response**:
+  ```json
+  [
+    {
+      "name": "Apples",
+      "price": 2.50,
+      "quantity": 100
+    },
+    {
+      "name": "Bananas",
+      "price": 1.75,
+      "quantity": 50
+    },
+    ...
+  ]
+  
 #### Add Grocery Item
 
 - **URL**: `/add-item`
@@ -91,6 +112,7 @@ http://yourdomain.com/admin
 - **Example Request**: `/manage-inventory/123?quantity=50`
 - **Example Response**: `200 OK` with no response body.
 
+
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## User Controller API Documentation
@@ -141,4 +163,22 @@ http://yourdomain.com/user
       "quantity": 3
     }
   ]
+
+
+### Docker Integration 
+
+#### command for create and running docker container of mysql 
+- docker run -p 3307:3306 --name mysqldb -e MYSQL_ROOT_PASSWORD=Mihir@1611 -e MYSQL_DATABASE=grocery mysql:latest
+
+#### create docker container of springboot project
+- docker build -t springboot-mysql-docker .  
+
+#### create new network
+- docker network create spring-network
+
+#### connect to newly created network 
+- docker network connect spring-network mysqldb
+
+#### command for running docker container of springboot application
+- docker run -p 9090:8080 --name springboot-mysql-docker --net spring-network -e MYSQL_HOST=mysqldb -e MYSQL_USER=root -e MYSQL_PORT=3307 springboot-mysql-docker
 

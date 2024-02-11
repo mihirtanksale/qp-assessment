@@ -1,6 +1,5 @@
 create database grocery;
 use grocery;
-#drop table grocery_item;
 CREATE TABLE grocery_item (
     id BIGINT NOT NULL AUTO_INCREMENT,
     name VARCHAR(255),
@@ -24,8 +23,3 @@ CREATE TABLE grocery_order (
     FOREIGN KEY (order_id) REFERENCES order_history(order_id)
 );
 commit;
-
-#show tables;
-select * from grocery_item;
-select * from grocery_order;
-select * from order_history;
