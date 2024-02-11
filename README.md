@@ -99,12 +99,14 @@ http://yourdomain.com/admin
 This document outlines the RESTful API endpoints provided by the User Controller for managing grocery items.
 
 ### Base URL
-http://yourdomain.com/user
+
+```
+http://yourdomain.com/admin
+```
 
 ### Endpoints
 
 #### Get All Available Grocery Items
-http://yourdomain.com/user
 
 - **URL**: `/available-items`
 - **Method**: GET
