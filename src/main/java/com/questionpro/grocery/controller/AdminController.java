@@ -21,7 +21,6 @@ public class AdminController {
 
     @GetMapping("/grocery-items")
     public List<GroceryItemDTO> getAllGroceryItems() {
-        System.out.println("test");
         return adminService.getAllGroceryItems();
     }
 
