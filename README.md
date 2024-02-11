@@ -90,3 +90,55 @@ http://yourdomain.com/admin
 - **Request Parameter**: `quantity` - New quantity to set for the grocery item.
 - **Example Request**: `/manage-inventory/123?quantity=50`
 - **Example Response**: `200 OK` with no response body.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## User Controller API Documentation
+
+This document outlines the RESTful API endpoints provided by the User Controller for managing grocery items.
+
+### Base URL
+http://yourdomain.com/user
+
+### Endpoints
+
+#### Get All Available Grocery Items
+http://yourdomain.com/user
+
+- **URL**: `/available-items`
+- **Method**: GET
+- **Description**: Retrieves a list of all available grocery items.
+- **Example Response**:
+  ```json
+  [
+    {
+      "name": "Apples",
+      "price": 2.50,
+      "quantity": 100
+    },
+    {
+      "name": "Bananas",
+      "price": 1.75,
+      "quantity": 50
+    },
+    ...
+  ]
+
+### Create Order
+
+- **URL**: `/create-order`
+- **Method**: POST
+- **Description**: Creates a new grocery order.
+- **Request Body**: List of `GroceryOrderDTO` objects.
+  ```json
+  [
+    {
+      "itemName": "Apples",
+      "quantity": 2
+    },
+    {
+      "itemName": "Bananas",
+      "quantity": 3
+    }
+  ]
+
