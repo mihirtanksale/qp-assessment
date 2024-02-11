@@ -10,6 +10,27 @@ http://yourdomain.com/admin
 
 ### Endpoints
 
+#### Get All Available Grocery Items
+
+- **URL**: `/available-items`
+- **Method**: GET
+- **Description**: Retrieves a list of all available grocery items.
+- **Example Response**:
+  ```json
+  [
+    {
+      "name": "Apples",
+      "price": 2.50,
+      "quantity": 100
+    },
+    {
+      "name": "Bananas",
+      "price": 1.75,
+      "quantity": 50
+    },
+    ...
+  ]
+  
 #### Add Grocery Item
 
 - **URL**: `/add-item`
@@ -90,6 +111,7 @@ http://yourdomain.com/admin
 - **Request Parameter**: `quantity` - New quantity to set for the grocery item.
 - **Example Request**: `/manage-inventory/123?quantity=50`
 - **Example Response**: `200 OK` with no response body.
+
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
