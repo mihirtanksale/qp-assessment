@@ -10,27 +10,6 @@ http://yourdomain.com/admin
 
 ### Endpoints
 
-#### Get All Available Grocery Items
-
-- **URL**: `/available-items`
-- **Method**: GET
-- **Description**: Retrieves a list of all available grocery items.
-- **Example Response**:
-  ```json
-  [
-    {
-      "name": "Apples",
-      "price": 2.50,
-      "quantity": 100
-    },
-    {
-      "name": "Bananas",
-      "price": 1.75,
-      "quantity": 50
-    },
-    ...
-  ]
-  
 #### Add Grocery Item
 
 - **URL**: `/add-item`
@@ -48,7 +27,7 @@ http://yourdomain.com/admin
     "quantity": 100
   }
   ```
-- **Example Response**: `200 OK` with no response body.
+- **Example Response**: `200 OK` with message "Grocery item added successfully."
 
 #### Get All Grocery Items
 
@@ -79,7 +58,7 @@ http://yourdomain.com/admin
 - **Description**: Removes a specific grocery item from the inventory.
 - **Path Parameter**: `itemId` - ID of the grocery item to be removed.
 - **Example Request**: `/remove-item/123`
-- **Example Response**: `200 OK` with no response body.
+- **Example Response**: `200 OK` with message "Grocery item removed successfully."
 
 #### Update Grocery Item
 
@@ -100,7 +79,7 @@ http://yourdomain.com/admin
     "quantity": 75
   }
   ```
-- **Example Response**: `200 OK` with no response body.
+- **Example Response**: `200 OK` with message "Grocery item updated successfully."
 
 #### Manage Inventory
 
@@ -110,7 +89,7 @@ http://yourdomain.com/admin
 - **Path Parameter**: `itemId` - ID of the grocery item to be managed.
 - **Request Parameter**: `quantity` - New quantity to set for the grocery item.
 - **Example Request**: `/manage-inventory/123?quantity=50`
-- **Example Response**: `200 OK` with no response body.
+- **Example Response**: `200 OK` with message "Inventory managed successfully."
 
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -163,7 +142,7 @@ http://yourdomain.com/user
       "quantity": 3
     }
   ]
-
+- **Example Response**: `200 OK` with message "Order created successfully."
 
 ### Docker Integration 
 
